@@ -5,7 +5,6 @@ import MovieReview from './pages/MovieReview';
 import AddMovieReview from './pages/SubmitReview';
 import Home from './pages/Home';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import props from './movies.json';
 
 function App() {
   return (

@@ -42,3 +42,9 @@ body {
 .nav li:hover {
     background-color: #777;
 }
+
+.movie-slides {
+    border-block: black 1px solid;
+    display: block;
+    text-align:center;
+}

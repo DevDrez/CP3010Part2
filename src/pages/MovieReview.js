@@ -1,5 +1,6 @@
 import React from 'react';
 import props from '../movies.json'
+import "../styles.css"
 
 function MovieReview() {
     return (
@@ -7,7 +8,7 @@ function MovieReview() {
             {
                 props.map( movie => {
                     return (
-                        <div>
+                        <div class="movie-slides">
                             <p><b>Movie Name:</b> {movie.name}</p>
                             <img src={movie.image} width="420" height="100"alt={movie.name} />
                             <p><b>Movie Raiting:</b> {movie.rating}</p>
