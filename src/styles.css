@@ -48,3 +48,8 @@ body {
     display: block;
     text-align:center;
 }
+
+.submitMovie {
+    border: #6c6c6c 1px solid;
+    text-align: center;
+}

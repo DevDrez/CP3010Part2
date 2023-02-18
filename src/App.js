@@ -2,7 +2,7 @@ import './App.css';
 import Navbar from './Navbar';
 import "./styles.css"
 import MovieReview from './pages/MovieReview';
-import AddMovieReview from './pages/SubmitReview';
+import Form from './pages/SubmitReview';
 import Home from './pages/Home';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/MovieReview" element={<MovieReview />} />
-        <Route path="/AddMovieReview" element={<AddMovieReview />} />
+        <Route path="/AddMovieReview" element={<Form />} />
       </Routes>
     </Router>
   );
