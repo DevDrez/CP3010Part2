@@ -1,44 +1,23 @@
 import './App.css';
-import Navbar from './Navbar';
 import "./styles.css"
-import MovieReview from './pages/MovieReview';
-import Form from './pages/SubmitReview';
-import Home from './pages/Home';
+import { Home }from './components/Home';
+import { MovieReview } from './components/MovieReview';
+import { Form } from './components/SubmitReview';
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { NavBar } from './components/Navbar';
 
 function App() {
   return (
-    <Router>
-      <Navbar />
+    <>
+      <NavBar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/MovieReview" element={<MovieReview />} />
-        <Route path="/AddMovieReview" element={<Form />} />
+        <Route path="/" element={<Home />}></Route>
+        <Route path="MovieReview" element={<MovieReview />}></Route>
+        <Route path="SubmitReview" element={<Form />}></Route>
       </Routes>
-    </Router>
+    </>
   );
 }
 
-
-/*function App() {
-  let component;
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home />;
-      break;
-    case "/MovieReview":
-      component = <MovieReview />;
-      break;
-    case "/AddMovieReview":
-      component = <AddMovieReview />;
-      break;
-  }
-  return (
-    <>
-      <Navbar />
-      {component}
-    </>
-  );
-}*/
 
 export default App;
