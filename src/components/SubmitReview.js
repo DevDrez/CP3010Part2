@@ -1,57 +1,74 @@
+import React, { useState } from "react";
 const data = require("../movies.json");
 
-export const Form = () => {
-  return (
-    
-    <form id="form" className="submitMovie">
-      <label>
-        Movie Name:
-        <input type="text" name="name" />
-      </label>
-      <br />
-      <br />
-      <label>
-        Photo URL:
-        <input id="url" type="text" name="photo" />
-      </label>
-      <br />
-      <br />
-      <label>
-        Movie Raiting:
-        <input id="raiting" type="number" name="raiting" />
-      </label>
-      <br />
-      <br />
-      <label>
-        Actors:
-        <input id="actors" type="text" name="actor" />
-      </label>
-      <br />
-      <br />
-      <label>
-        Release Date:
-        <input id="releaseDate" type="text" name="releaseDate" />
-      </label>
-      <br />
-      <br />
-      <button type="button" onClick={onSubmit}>Submit</button>
-    </form>
-  );
-}
+export function Form() {
+  let countOfData = data.length;
+  const [movie, setMovie] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [raiting, setRaiting] = useState("");
+  const [actor, setActor] = useState("");
+  const [releaseDate, setRelease] = useState("");
 
-export function onSubmit(){
-  console.log("onSubmit")
-  let name = document.getElementById("name").value;
-  let url = document.getElementById("url").value;
-  let raiting = document.getElementById("raiting").value;
-  let actors = document.getElementById("actors").value;
-  let releaseDate = document.getElementById("releaseDate").value;
-  pushData(name, url, raiting, actors, releaseDate);
-  console.log(data);
+  const handleMovieChange = (event) => {
+    setMovie(event.target.value);
+  };
+  const handlePhotoChange = (event) => {
+    setPhoto(event.target.value);
+  };
+  const handleRaitingChange = (event) => {
+    setRaiting(event.target.value);
+  };
+  const handleActorChange = (event) => {
+    setActor(event.target.value);
+  };
+  const handleReleaseDateChange = (event) => {
+    setRelease(event.target.value);
+  };
+
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    pushData(countOfData, movie, photo, raiting, actor, releaseDate);
+  };
+
+
+    return (
+      <form id="form" className="submitMovie" onSubmit={handleSubmit}>
+        <label>
+          Movie Name:
+          <input type="text" name="name" onChange={handleMovieChange}/>
+        </label>
+        <br />
+        <br />
+        <label>
+          Photo URL:
+          <input id="url" type="text" name="photo" onChange={handlePhotoChange}/>
+        </label>
+        <br />
+        <br />
+        <label>
+          Movie Raiting:
+          <input id="raiting" type="number" name="raiting" onChange={handleRaitingChange}/>
+        </label>
+        <br />
+        <br />
+        <label>
+          Actors:
+          <input id="actors" type="text" name="actor" onChange={handleActorChange}/>
+        </label>
+        <br />
+        <br />
+        <label>
+          Release Date:
+          <input id="releaseDate" type="text" name="releaseDate" onChange={handleReleaseDateChange}/>
+        </label>
+        <br />
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    );
 }
 
 export function pushData(name, url, raiting, actors, releaseDate){
   data.push({name: name, releaseDate: releaseDate, actors: actors, image: url, rating: raiting});
 }
-
-console.log(data);
