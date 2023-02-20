@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-const data = require("../movies.json");
 
-export function Form() {
-  let countOfData = data.length;
+export function Form({data, setData}) {
+  
   const [movie, setMovie] = useState("");
   const [photo, setPhoto] = useState("");
   const [raiting, setRaiting] = useState("");

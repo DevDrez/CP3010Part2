@@ -1,33 +1,24 @@
-import React, { useState } from 'react';
 import "../styles.css"
 
-//Hold the json movie list.
-const movie = require("../movies.json")
-
-export let MovieReview = () => {
-
-    let [data, setData] = useState(movie);
-    
+export let MovieReview = ({data, setData}) => {
     const handleRemoveRow = (id) => {
         let newData = data.filter(movie => movie.id !== id);
         setData(newData)
-        /*As you can see in the console, it is removing the movie from the list,
-        but it is not updating the page.*/
         console.log(newData)
       }
 
     return (
         <div>
             {
-                movie.map( movie => {
+                data.map( data => {
                     return (
                         <div className="movie-slides">
-                            <p><b>Movie Name:</b> {movie.name}</p>
-                            <img src={movie.image} alt={movie.name} />
-                            <p><b>Movie Raiting:</b> {movie.rating}</p>
-                            <p><b>Actors: </b> {movie.actors}</p>
-                            <p><b>Release Date: </b> {movie.release_date}</p>
-                            <button onClick={() => handleRemoveRow(movie.id)}>Delete</button>
+                            <p><b>Movie Name:</b> {data.name}</p>
+                            <img src={data.image} alt={data.name} />
+                            <p><b>Movie Raiting:</b> {data.rating}</p>
+                            <p><b>Actors: </b> {data.actors}</p>
+                            <p><b>Release Date: </b> {data.release_date}</p>
+                            <button onClick={() => handleRemoveRow(data.id)}>Delete</button>
                             <br></br>
                         </div>
                     )
