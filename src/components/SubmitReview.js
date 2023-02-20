@@ -7,7 +7,7 @@ export function Form() {
   const [photo, setPhoto] = useState("");
   const [raiting, setRaiting] = useState("");
   const [actor, setActor] = useState("");
-  const [releaseDate, setRelease] = useState("");
+  const [release_date, setRelease] = useState("");
 
   const handleMovieChange = (event) => {
     setMovie(event.target.value);
@@ -23,12 +23,13 @@ export function Form() {
   };
   const handleReleaseDateChange = (event) => {
     setRelease(event.target.value);
+    console.log(setRelease(event.target.value))
   };
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    pushData(countOfData, movie, photo, raiting, actor, releaseDate);
+    data.push({name: movie, release_date:release_date, actors: actor, image:photo , rating:raiting });
   };
 
 
@@ -60,15 +61,11 @@ export function Form() {
         <br />
         <label>
           Release Date:
-          <input id="releaseDate" type="text" name="releaseDate" onChange={handleReleaseDateChange}/>
+          <input id="release_date" type="text" name="release_date" onChange={handleReleaseDateChange}/>
         </label>
         <br />
         <br />
         <button type="submit">Submit</button>
       </form>
     );
-}
-
-export function pushData(name, url, raiting, actors, releaseDate){
-  data.push({name: name, releaseDate: releaseDate, actors: actors, image: url, rating: raiting});
 }
