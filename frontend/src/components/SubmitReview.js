@@ -33,7 +33,8 @@ export function Form({data, setData}) {
 
 
     return (
-      <form id="form" className="submitMovie" onSubmit={handleSubmit}>
+      <form id="form" className="submitMovie" onSubmit={handleSubmit} method="post" action='/api/SubmitReview'
+      encType="multipart/form-data">
         <label>
           Movie Name:
           <input type="text" name="name" onChange={handleMovieChange}/>
@@ -43,6 +44,7 @@ export function Form({data, setData}) {
         <label>
           Photo URL:
           <input id="url" type="text" name="photo" onChange={handlePhotoChange}/>
+          <input type="file" name="movie_poster" />
         </label>
         <br />
         <br />
