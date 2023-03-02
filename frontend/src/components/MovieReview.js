@@ -1,10 +1,29 @@
 import "../styles.css"
 
 export let MovieReview = ({data, setData}) => {
-    const handleRemoveRow = (id) => {
-        let newData = data.filter(movie => movie.id !== id);
-        setData(newData)
-        console.log(newData)
+    const handleRemoveRow = async (id) => {
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/xxx-www-form-urlencoded");
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("id", id);
+        
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        try {
+            const response = await fetch("/api/removeMovie", requestOptions);
+            if ( response.status == 200 ) {
+                setData( data.filter( movie => movie.id !== id ) );
+            }
+        } catch (error) {
+            console.log(error);
+        }
       }
 
     return (

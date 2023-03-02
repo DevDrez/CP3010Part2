@@ -26,14 +26,17 @@ export function Form({data, setData}) {
   };
 
 
-  const handleSubmit = (event) => {
+  const submit = (event) => {
     event.preventDefault();
+    console.log("Working")
     data.push({name: movie, release_date:release_date, actors: actor, image:photo , rating:raiting });
+
+    alert("Movie Submitted: " + movie);
   };
 
 
     return (
-      <form id="form" className="submitMovie" onSubmit={handleSubmit} method="post" action='/api/SubmitReview'
+      <form method="post" action='/api/SubmitReview' enctype="multipart/form-data" id="form" className="submitMovie"
       encType="multipart/form-data">
         <label>
           Movie Name:
@@ -66,7 +69,7 @@ export function Form({data, setData}) {
         </label>
         <br />
         <br />
-        <button type="submit">Submit</button>
+        <input type="submit" value='Submit'></input>
       </form>
     );
 }

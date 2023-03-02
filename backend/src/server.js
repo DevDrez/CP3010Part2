@@ -1,31 +1,17 @@
 import express from 'express';
-import fs from 'fs';
 import {MongoClient } from 'mongodb';
 import multer from 'multer';
 
 
-
 const app = express()
+app.use(express.json());
 const port = 8000
 
+app.use(express.urlencoded({ extended: false }));
 
-
-const upload = multer({ dest: 'posters/' });
-
-const movieData = JSON.parse(fs.readFileSync('../frontend/public/movies.json'));
-console.log(movieData);
-
-
-/*let movieData = [
-    {"title":"Terminator 2"},
-    {"title":"Rocky IV"},
-    {"title":"Titanic"},
-    {"title":"Die Hard"}
-];*/
+const upload = multer({ dest: 'posters/' })
 
 app.get('/api/movies', async (req, res) => {
-    
-    //res.json(movieData)
     const client = new MongoClient('mongodb://127.0.0.1:27017');
     await client.connect();
 
@@ -34,42 +20,47 @@ app.get('/api/movies', async (req, res) => {
     const movieData = await db.collection('movies').find({}).toArray();
     console.log(movieData);
     res.json(movieData);
-
 })
 
-app.post('/api/SubmitReview', async (req,res) => {
+app.post('/api/removeMovie', async (req, res) => {
+  console.log(req.body.title);
+  
   const client = new MongoClient('mongodb://127.0.0.1:27017');
   await client.connect();
 
   const db = client.db('movie-data');
-
-
-  const insertOperation = await db.collection('movies').insertOne( {'name':req.body.name}, {'photo':req.body.photo},
-  {'raiting':req.body.raiting}, {'actor':req.body.actor}, {'release_date':req.body.release_date});
-  console.log(insertOperation);
-  res.redirect('/');
-
-    /*movieData.push( { "title":req.body.title })
-    saveData();
-    console.log("update movies called");
-    console.log(req.body);
-    res.redirect('/');*/
+  const result = await db.collection('movies').deleteOne({ title: req.body.title})
+ 
+  res.sendStatus(200);
 })
 
-app.get('/movies/', (req, res) => {
-    res.json(movieData);
+app.post("/api/SubmitReview", async (req, res) => {
+	const client = new MongoClient("mongodb://127.0.0.1:27017");
+	await client.connect();
+
+	const db = client.db("movie-data");
+
+	const movieObj = {
+    id: req.body.id,
+		name: req.body.name,
+		release_date: req.body.release_date,
+		actors: req.body.actors,
+		image: req.body.image,
+		rating: req.body.rating,
+	};
+	console.log(req.body);
+	res.send(req.body);
+
+	const newMovie = await db.collection("movies").insertOne(movieObj);
+
+	console.log(newMovie);
+	res.redirect("/MovieReview");
 });
 
 
-const saveData = () => {
-  const jsonContent = JSON.stringify(movieData);
-  fs.writeFile("./movies.json", jsonContent, 'utf8', function (err) {
-    if (err) {
-        console.log("An error occured while writing JSON Object to File.");
-    }
-    console.log("JSON file has been saved.");
-  });
-}
+app.get('/movies', (req, res) => {
+    res.json(movieData);
+});
 
 
 

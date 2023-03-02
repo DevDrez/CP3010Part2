@@ -3,20 +3,19 @@ import "./styles.css"
 import { Home }from './components/Home';
 import { MovieReview } from './components/MovieReview';
 import { Form } from './components/SubmitReview';
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {Route, Routes } from 'react-router-dom';
 import { NavBar } from './components/Navbar';
 import { useState, useEffect } from 'react';
 
 
 function App() {
-  //let movie = require("./movies.json");
   let [data, setData] = useState(null);
 
   useEffect(() => {
-		fetch("./movies.json")
-			.then((response) => response.json())
+		fetch("/api/movies")
+			.then(response => response.json())
 			.then(setData)
-			.catch((error) => console.log("This Error " + error));
+			.catch(error => console.log("This Error " + error));
 	}, []);
 
 	if (data == null) {
