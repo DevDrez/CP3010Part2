@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import {Card , Form, Button} from 'react-bootstrap';
 
-export function Form({data, setData}) {
+export function FormBuilder({data, setData}) {
   
-  const [movie, setMovie] = useState("");
-  const [photo, setPhoto] = useState("");
+  /*const [movie, setMovie] = useState("");
+  const [image, setImage] = useState("");
   const [raiting, setRaiting] = useState("");
   const [actor, setActor] = useState("");
   const [release_date, setRelease] = useState("");
@@ -12,7 +13,7 @@ export function Form({data, setData}) {
     setMovie(event.target.value);
   };
   const handlePhotoChange = (event) => {
-    setPhoto(event.target.value);
+    setImage(event.target.value);
   };
   const handleRaitingChange = (event) => {
     setRaiting(event.target.value);
@@ -23,53 +24,83 @@ export function Form({data, setData}) {
   const handleReleaseDateChange = (event) => {
     setRelease(event.target.value);
     console.log(setRelease(event.target.value))
-  };
-
-
-  const submit = (event) => {
-    event.preventDefault();
-    console.log("Working")
-    data.push({name: movie, release_date:release_date, actors: actor, image:photo , rating:raiting });
-
-    alert("Movie Submitted: " + movie);
-  };
+  };*/
 
 
     return (
-      <form method="post" action='/api/SubmitReview' enctype="multipart/form-data" id="form" className="submitMovie"
-      encType="multipart/form-data">
-        <label>
-          Movie Name:
-          <input type="text" name="name" onChange={handleMovieChange}/>
-        </label>
-        <br />
-        <br />
-        <label>
-          Photo URL:
-          <input id="url" type="text" name="photo" onChange={handlePhotoChange}/>
-          <input type="file" name="movie_poster" />
-        </label>
-        <br />
-        <br />
-        <label>
-          Movie Raiting:
-          <input id="raiting" type="number" name="raiting" onChange={handleRaitingChange}/>
-        </label>
-        <br />
-        <br />
-        <label>
-          Actors:
-          <input id="actors" type="text" name="actor" onChange={handleActorChange}/>
-        </label>
-        <br />
-        <br />
-        <label>
-          Release Date:
-          <input id="release_date" type="text" name="release_date" onChange={handleReleaseDateChange}/>
-        </label>
-        <br />
-        <br />
-        <input type="submit" value='Submit'></input>
-      </form>
-    );
-}
+      <> 
+      <center>
+      <Card style = {{width:"50em", padding:"2em"}}>
+        <Form method="post" action='/api/SubmitReview' enctype="multipart/form-data">
+
+          <Form.Group controlId="name">
+            <Form.Label>Movie Name</Form.Label>
+            <Form.Control type="text" placeholder="Movie Name"/>
+          </Form.Group>
+
+          <Form.Group controlId="image">
+            <Form.Label>Image</Form.Label>
+            <Form.Control name="image" type="file"/>
+          </Form.Group>
+
+          <Form.Group controlId="actors">
+            <Form.Label>Actors</Form.Label>
+            <Form.Control type="text" placeholder="Movie Name"/>
+          </Form.Group>
+
+          <Form.Group controlId="release_date">
+            <Form.Label>Release Date</Form.Label>
+            <Form.Control type="text" placeholder="Movie Name"/>
+          </Form.Group>
+
+          <Form.Group controlId="rating">
+            <Form.Label>Rating</Form.Label>
+            <Form.Control type="text" placeholder="Movie Name"/>
+          </Form.Group>
+
+        </Form>
+      </Card>
+      </center>
+      
+      </>
+    );}
+    /*
+    <form method="post" action='/api/SubmitReview' enctype="multipart/form-data" id="form" className="submitMovie">
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Movie Name"
+        onChange={handleMovieChange}
+      />
+      <input type="file" name="image" id="image" onChange={handlePhotoChange}/>
+      <select name='rating' onChange={handleRaitingChange}>
+          <option value=''></option>
+          <option value='1'>1 Thumb Up</option>
+          <option value='2'>2 Thumbs Up</option>
+          <option value='3'>3 Thumbs Up</option>
+          <option value='4'>4 Thumbs Up</option>
+          <option value='5'>5 Thumbs Up</option>
+        </select>
+      <input 
+        type="text"
+        id="actors"
+        name="actors"
+        placeholder="Actors"
+        onChange={handleActorChange}
+      />
+
+      <input 
+        type="text"
+        id="release_date"
+        name="release_date"
+        placeholder="Release Date"
+        onChange={handleReleaseDateChange}
+      />
+      <input 
+      type="submit" 
+      value='Submit' 
+      />
+    </form>
+  );
+  */

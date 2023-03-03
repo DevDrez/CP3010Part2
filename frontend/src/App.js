@@ -2,7 +2,7 @@ import './App.css';
 import "./styles.css"
 import { Home }from './components/Home';
 import { MovieReview } from './components/MovieReview';
-import { Form } from './components/SubmitReview';
+import { FormBuilder } from './components/SubmitReview';
 import {Route, Routes } from 'react-router-dom';
 import { NavBar } from './components/Navbar';
 import { useState, useEffect } from 'react';
@@ -28,7 +28,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="MovieReview" element={<MovieReview data={data} setData={setData}/>}></Route>
-        <Route path="SubmitReview" element={<Form data={data} setData={setData}/>}></Route>
+        <Route path="SubmitReview" element={<FormBuilder data={data} setData={setData}/>}></Route>
       </Routes>
     </>
   );
