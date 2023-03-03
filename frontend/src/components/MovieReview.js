@@ -1,4 +1,6 @@
 import "../styles.css"
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export let MovieReview = ({data, setData}) => {
     const handleRemoveRow = async (name) => {
@@ -35,22 +37,26 @@ export let MovieReview = ({data, setData}) => {
     };
 
     return (
-        <div>
-            {
-                data.map( data => {
-                    return (
-                        <div className="movie-slides">
-                            <p><b>Movie Name:</b> {data.name}</p>
-                            <img src={data.image} alt={data.name} />
-                            <p><b>Movie Raiting:</b> {displayThumbs(data.rating)}</p>
-                            <p><b>Actors: </b> {data.actors}</p>
-                            <p><b>Release Date: </b> {data.release_date}</p>
-                            <button onClick={() => handleRemoveRow(data.name)}>Delete</button>
-                            <br></br>
-                        </div>
-                    )
-                })
-            }
-        </div>
+        <Container>
+            <Row>
+                {
+                    data.map( data => (
+                        <Col sm={4} className='mb-6'>
+                            <Card>
+                                <Card.Img className="img-responsive img-thumbnail" variant="top" src={data.image}/>
+                                    <Card.Body>
+                                        <Card.Title>{data.name}</Card.Title>
+                                        <Card.Text>{data.release_date}</Card.Text>
+                                        <Card.Text>{displayThumbs(data.rating)}</Card.Text>
+                                        <Card.Text className='actors'>{data.actors}</Card.Text>
+                                        <Button onClick={() => handleRemoveRow(data.name)}>Delete</Button>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))
+                        
+                    }
+            </Row>
+        </Container>
     );
 }
